@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #C9A84C;
+  --color-primary-dark: #b08d35;
+  --color-secondary: #1E6B4A;
+  --color-background-dark: #0D1117;
+  --color-background-card: #161b22;
+  --color-surface-dark: #2a261a;
+  --color-silver: #8A9BB0;
+  --color-text-gold: #bfb69b;
+  
+  --font-display: "Manrope", sans-serif;
+  --font-arabic: "Cairo", sans-serif;
+  --font-quran: "Amiri", serif;
+}
+
+@layer base {
+  body {
+    @apply font-arabic text-slate-100 bg-background-dark;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .theme-light {
+    @apply bg-[#f8f7f6] text-slate-900;
+    background-image: none;
+  }
+
+  .theme-paper {
+    @apply bg-[#e8e4d9] text-[#5c5645];
+    background-image: none;
+  }
+}
+
+.glass-card {
+  background: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.theme-light .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.theme-paper .glass-card {
+  background: rgba(245, 240, 230, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+}
+
+.sadaka-glow {
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.5), 0 0 40px rgba(201, 168, 76, 0.2);
+}
+
+.bg-gold-gradient {
+  background-image: linear-gradient(135deg, #C9A84C 0%, #E8C872 50%, #C9A84C 100%);
+}
+
+.ayah-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='48' stroke='%23c9a74a' stroke-width='2'/%3E%3Cpath d='M50 10V20M50 80V90M10 50H20M80 50H90' stroke='%23c9a74a' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.8rem;
+  color: #c9a74a;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.6);
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Quran Lux PWA",
+  "short_name": "QuranLux",
+  "description": "تطبيق القرآن الكريم - قراءة واستماع",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D1117",
+  "theme_color": "#C9A84C",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3389/3389152.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
