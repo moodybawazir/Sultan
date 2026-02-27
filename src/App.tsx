@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import Reader from './pages/Reader';
 import Settings from './pages/Settings';
 import AudioPlayer from './pages/AudioPlayer';
+import Azkar from './pages/Azkar';
+import Prayer from './pages/Prayer';
 
 export default function App() {
   const theme = useAppStore(state => state.theme);
@@ -24,6 +26,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="azkar" element={<Azkar />} />
+          <Route path="prayer" element={<Prayer />} />
           <Route path="read/:surahId" element={<Reader />} />
           <Route path="audio" element={<AudioPlayer />} />
           <Route path="settings" element={<Settings />} />

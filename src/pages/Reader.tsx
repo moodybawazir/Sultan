@@ -23,6 +23,8 @@ export default function Reader() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
   useEffect(() => {
     if (surahId) {
       fetchSurah(Number(surahId)).then(setSurah);
@@ -31,9 +33,48 @@ export default function Reader() {
       }
       fetchSurah(Number(surahId), 'ar.muyassar').then(setTafsir);
       
-      setLastRead(Number(surahId), 1);
+      const currentLastRead = useAppStore.getState().lastRead;
+      if (!currentLastRead || currentLastRead.surah !== Number(surahId)) {
+        setLastRead(Number(surahId), 1);
+      }
     }
   }, [surahId, showTranslation, translationLang]);
+
+  useEffect(() => {
+    if (surah) {
+      const currentLastRead = useAppStore.getState().lastRead;
+      if (currentLastRead && currentLastRead.surah === Number(surahId) && currentLastRead.ayah > 1) {
+        setTimeout(() => {
+          const el = document.getElementById(`ayah-${currentLastRead.ayah}`);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 500);
+      }
+
+      if (observerRef.current) observerRef.current.disconnect();
+
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const ayahNum = parseInt(entry.target.getAttribute('data-ayah') || '1');
+              useAppStore.getState().setLastRead(Number(surahId), ayahNum);
+            }
+          });
+        },
+        { root: null, rootMargin: '-30% 0px -50% 0px', threshold: 0 }
+      );
+
+      setTimeout(() => {
+        document.querySelectorAll('.ayah-element').forEach(el => {
+          observerRef.current?.observe(el);
+        });
+      }, 1000);
+    }
+    
+    return () => observerRef.current?.disconnect();
+  }, [surah, surahId]);
 
   if (!surah) return <div className="flex justify-center p-20"><div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>;
 
@@ -116,7 +157,12 @@ export default function Reader() {
               }
 
               return (
-                <span key={ayah.number} className="relative group inline-block">
+                <span 
+                  key={ayah.number} 
+                  id={`ayah-${ayah.numberInSurah}`}
+                  data-ayah={ayah.numberInSurah}
+                  className="relative group inline-block ayah-element"
+                >
                   <span 
                     className="hover:text-primary transition-colors duration-300 cursor-pointer"
                     onClick={() => handlePlayAyah(ayah.number)}

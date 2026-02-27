@@ -1,6 +1,6 @@
 {
   "name": "Quran Lux PWA",
-  "short_name": "QuranLux",
+  "short_name": "صدقة جارية",
   "description": "تطبيق القرآن الكريم - قراءة واستماع",
   "start_url": "/",
   "display": "standalone",
@@ -8,9 +8,15 @@
   "theme_color": "#C9A84C",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3389/3389152.png",
-      "sizes": "512x512",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

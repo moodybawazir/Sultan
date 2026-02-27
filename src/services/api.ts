@@ -49,3 +49,46 @@ export const fetchAyahOfTheDay = async () => {
     return null;
   }
 };
+
+// --- Prayer Times API ---
+const ALADHAN_BASE = 'https://api.aladhan.com/v1';
+
+export const fetchPrayerTimesByGPS = async (lat: number, lng: number) => {
+  try {
+    const timestamp = Math.floor(Date.now() / 1000);
+    // method 4: Umm Al-Qura University, Makkah
+    const res = await fetch(`${ALADHAN_BASE}/timings/${timestamp}?latitude=${lat}&longitude=${lng}&method=4`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching prayer times by GPS:', error);
+    throw error;
+  }
+};
+
+export const getCityFromCoords = async (lat: number, lng: number) => {
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`);
+    const data = await res.json();
+    return data.address?.city || data.address?.town || data.address?.state || data.name;
+  } catch (error) {
+    console.error('Error fetching city name:', error);
+    return null;
+  }
+};
+
+export const detectLocationFallback = async () => {
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    return {
+      lat: data.latitude,
+      lng: data.longitude,
+      city: data.city
+    };
+  } catch (error) {
+    console.error('Error detecting location by IP:', error);
+    throw error;
+  }
+};
+
