@@ -88,7 +88,7 @@ export default function Azkar() {
 
             {/* Main Interactive Zikr Area */}
             <div
-                className="flex-1 glass-card rounded-3xl relative overflow-hidden flex flex-col items-center justify-center cursor-pointer select-none ring-1 ring-white/10 shadow-2xl"
+                className="flex-1 glass-card rounded-3xl relative overflow-hidden flex flex-col items-center justify-center cursor-pointer select-none ring-1 ring-white/10 shadow-2xl active:scale-[0.98] transition-all duration-75 touch-none"
                 onClick={handleTap}
                 role="button"
                 aria-label="Tap to count Zikr"
