@@ -10,12 +10,12 @@ export default function Reader() {
   const [surah, setSurah] = useState<any>(null);
   const [translation, setTranslation] = useState<any>(null);
   const [tafsir, setTafsir] = useState<any>(null);
-  
-  const { 
-    fontSize, 
-    showTranslation, 
-    translationLang, 
-    setLastRead, 
+
+  const {
+    fontSize,
+    showTranslation,
+    translationLang,
+    setLastRead,
     setAudioState,
     addBookmark,
     bookmarks
@@ -32,7 +32,7 @@ export default function Reader() {
         fetchSurah(Number(surahId), translationLang).then(setTranslation);
       }
       fetchSurah(Number(surahId), 'ar.muyassar').then(setTafsir);
-      
+
       const currentLastRead = useAppStore.getState().lastRead;
       if (!currentLastRead || currentLastRead.surah !== Number(surahId)) {
         setLastRead(Number(surahId), 1);
@@ -72,7 +72,7 @@ export default function Reader() {
         });
       }, 1000);
     }
-    
+
     return () => observerRef.current?.disconnect();
   }, [surah, surahId]);
 
@@ -107,18 +107,18 @@ export default function Reader() {
           <div className="hidden sm:flex items-center gap-2 px-3 border-l border-white/10 ml-2">
             <span className="text-xs text-text-gold font-medium">{surah.number}. {surah.name}</span>
           </div>
-          
-          <button onClick={() => useAppStore.setState(s => ({ showTranslation: !s.showTranslation }))} className={`p-2 rounded-full transition-colors ${showTranslation ? 'text-primary bg-primary/10' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}>
+
+          <button onClick={() => useAppStore.setState(s => ({ showTranslation: !s.showTranslation }))} className={`p-2 rounded-full transition-all active:scale-95 ${showTranslation ? 'text-primary bg-primary/10' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}>
             <Languages className="w-5 h-5" />
           </button>
-          
-          <button onClick={() => useAppStore.setState(s => ({ fontSize: Math.min(60, s.fontSize + 2) }))} className="p-2 text-slate-400 hover:text-white rounded-full hover:bg-white/5 transition-colors">
+
+          <button onClick={() => useAppStore.setState(s => ({ fontSize: Math.min(60, s.fontSize + 2) }))} className="p-2 text-slate-400 hover:text-white rounded-full hover:bg-white/5 transition-all active:scale-95">
             <Type className="w-5 h-5" />
           </button>
-          
+
           <div className="h-6 w-px bg-white/10 mx-1"></div>
-          
-          <button onClick={() => handlePlayAyah(surah.ayahs[0].number)} className="p-2 text-primary hover:text-primary/80 rounded-full hover:bg-primary/10 transition-colors">
+
+          <button onClick={() => handlePlayAyah(surah.ayahs[0].number)} className="p-2 text-primary hover:text-primary/80 rounded-full hover:bg-primary/10 transition-all active:scale-95">
             <PlayCircle className="w-6 h-6 fill-current" />
           </button>
         </div>
@@ -130,7 +130,7 @@ export default function Reader() {
             <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-3xl blur-3xl -z-10"></div>
             <div className="w-full flex justify-between items-start mb-6 border-b border-primary/20 pb-6">
               <div className="text-right">
-                <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">{surah.name}</h1>
+                <h1 className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight">{surah.name}</h1>
                 <p className="text-primary font-medium text-lg">{surah.englishName}</p>
               </div>
               <div className="text-left">
@@ -141,7 +141,7 @@ export default function Reader() {
                 <p className="text-slate-500 dark:text-text-gold text-sm">{surah.numberOfAyahs.toLocaleString('ar-EG')} آيات</p>
               </div>
             </div>
-            
+
             {Number(surahId) !== 1 && Number(surahId) !== 9 && (
               <div className="mb-12 text-center font-quran text-3xl text-slate-800 dark:text-slate-200">
                 بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
@@ -157,20 +157,20 @@ export default function Reader() {
               }
 
               return (
-                <span 
-                  key={ayah.number} 
+                <span
+                  key={ayah.number}
                   id={`ayah-${ayah.numberInSurah}`}
                   data-ayah={ayah.numberInSurah}
                   className="relative group inline-block ayah-element"
                 >
-                  <span 
+                  <span
                     className="hover:text-primary transition-colors duration-300 cursor-pointer"
                     onClick={() => handlePlayAyah(ayah.number)}
                   >
                     {text}
                   </span>
                   <span className="ayah-marker">{ayah.numberInSurah.toLocaleString('ar-EG')}</span>
-                  
+
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex items-center gap-2 bg-background-card border border-white/10 rounded-lg p-1 shadow-xl z-50">
                     <button onClick={() => handlePlayAyah(ayah.number)} className="p-2 hover:bg-white/10 rounded text-primary">
                       <PlayCircle className="w-4 h-4" />
@@ -197,7 +197,7 @@ export default function Reader() {
           </div>
 
           <div className="flex justify-between items-center mt-20 pt-8 border-t border-slate-200 dark:border-white/10">
-            <button 
+            <button
               onClick={() => navigate(`/read/${Math.min(114, Number(surahId) + 1)}`)}
               disabled={Number(surahId) === 114}
               className="group flex items-center gap-4 text-right hover:opacity-80 transition-opacity disabled:opacity-50"
@@ -209,8 +209,8 @@ export default function Reader() {
                 <span className="block text-xs text-slate-500 uppercase tracking-widest">السورة التالية</span>
               </div>
             </button>
-            
-            <button 
+
+            <button
               onClick={() => navigate(`/read/${Math.max(1, Number(surahId) - 1)}`)}
               disabled={Number(surahId) === 1}
               className="group flex items-center gap-4 text-left disabled:opacity-50"

@@ -77,13 +77,13 @@ export default function Home() {
         <h1 className="text-4xl md:text-5xl font-arabic font-extrabold text-transparent bg-clip-text bg-gold-gradient sadaka-glow tracking-wide mb-2">
           صدقة جارية
         </h1>
-        <h2 className="text-xl md:text-2xl font-arabic font-bold text-slate-300 tracking-wide">
+        <h2 className="text-xl md:text-2xl font-arabic font-bold text-slate-100 tracking-wide">
           سلطان بن عبدالله بن علي بن بوبكر المنصب باوزير
         </h2>
       </motion.div>
 
       <motion.div variants={itemVariants} className="flex flex-col gap-1 px-2">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight font-arabic">
+        <h2 className="text-3xl font-bold text-white tracking-tight font-arabic">
           السلام عليكم، <span className="text-primary text-glow">قارئ القرآن</span>
         </h2>
         <p className="text-silver text-sm">تابع وردك اليومي واستمر في القراءة.</p>
@@ -100,7 +100,7 @@ export default function Home() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]"></span>
                   آخر قراءة
                 </span>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-2xl font-bold text-white mb-1">
                   {lastRead ? `سورة ${surahs.find(s => s.number === lastRead.surah)?.name || ''}` : 'ابدأ القراءة'}
                 </h3>
                 {lastRead && <p className="text-silver text-sm">الآية {lastRead.ayah}</p>}
@@ -139,7 +139,7 @@ export default function Home() {
           <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-[60px] pointer-events-none group-hover:scale-110 transition-transform duration-700"></div>
 
           <div className="flex items-center justify-between mb-6 relative z-10">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">آية اليوم</h3>
+            <h3 className="text-lg font-bold text-slate-100">آية اليوم</h3>
             <Sparkles className="text-primary w-5 h-5 animate-pulse" />
           </div>
 
@@ -163,7 +163,7 @@ export default function Home() {
       </div>
 
       <div className="flex items-center justify-between mt-4">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">قائمة السور</h2>
+        <h2 className="text-2xl font-bold text-white">قائمة السور</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -176,7 +176,8 @@ export default function Home() {
           >
             <Link
               to={`/read/${surah.number}`}
-              className="group relative glass-card hover:bg-background-card/80 border border-white/5 hover:border-primary/50 text-right rounded-xl p-4 transition-all duration-300 hover:shadow-[0_4px_20px_-2px_rgba(201,168,76,0.1)] hover:-translate-y-1 flex"
+              className="group relative glass-card hover:bg-background-card/80 border border-white/5 hover:border-primary/50 text-right rounded-xl p-4 transition-all duration-300 hover:shadow-[0_4px_20px_-2px_rgba(201,168,76,0.1)] active:scale-[0.98] flex"
+              style={{ touchAction: 'manipulation' }}
             >
               <div className="flex items-center justify-between flex-row-reverse w-full">
                 <div className="flex items-center gap-4 flex-row-reverse">
@@ -184,10 +185,10 @@ export default function Home() {
                     <svg className="absolute inset-0 w-full h-full text-primary/20 group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 40 40">
                       <path d="M20 0L24.49 15.51L40 20L24.49 24.49L20 40L15.51 24.49L0 20L15.51 15.51L20 0Z" opacity="0.4"></path>
                     </svg>
-                    <span className="text-sm font-bold text-slate-900 dark:text-white z-10 font-arabic">{surah.number.toLocaleString('ar-EG')}</span>
+                    <span className="text-sm font-bold text-white z-10 font-arabic">{surah.number.toLocaleString('ar-EG')}</span>
                   </div>
                   <div className="text-right">
-                    <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">{surah.name}</h4>
+                    <h4 className="text-base font-bold text-white group-hover:text-primary transition-colors">{surah.name}</h4>
                     <p className="text-xs text-silver">{surah.numberOfAyahs.toLocaleString('ar-EG')} آية</p>
                   </div>
                 </div>

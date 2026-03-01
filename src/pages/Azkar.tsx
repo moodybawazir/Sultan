@@ -62,7 +62,7 @@ export default function Azkar() {
             <div className="flex bg-background-card/50 p-1.5 rounded-2xl border border-white/5 shadow-inner">
                 <button
                     onClick={() => setActiveTab('sabha')}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'sabha' ? 'bg-primary text-background-dark shadow-md' : 'text-silver hover:text-white'
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 rounded-xl text-sm font-bold transition-all active:scale-95 ${activeTab === 'sabha' ? 'bg-primary text-background-dark shadow-md' : 'text-silver hover:text-white'
                         }`}
                 >
                     <CircleOff className="w-4 h-4" />
@@ -70,7 +70,7 @@ export default function Azkar() {
                 </button>
                 <button
                     onClick={() => setActiveTab('morning')}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'morning' ? 'bg-[#4ade80] text-background-dark shadow-md' : 'text-silver hover:text-white'
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 rounded-xl text-sm font-bold transition-all active:scale-95 ${activeTab === 'morning' ? 'bg-[#4ade80] text-background-dark shadow-md' : 'text-silver hover:text-white'
                         }`}
                 >
                     <Sun className="w-4 h-4" />
@@ -78,7 +78,7 @@ export default function Azkar() {
                 </button>
                 <button
                     onClick={() => setActiveTab('evening')}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'evening' ? 'bg-[#3b82f6] text-background-dark shadow-md' : 'text-silver hover:text-white'
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 rounded-xl text-sm font-bold transition-all active:scale-95 ${activeTab === 'evening' ? 'bg-primary/80 text-background-dark shadow-md' : 'text-silver hover:text-white'
                         }`}
                 >
                     <Moon className="w-4 h-4" />
